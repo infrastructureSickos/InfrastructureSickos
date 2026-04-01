@@ -1,12 +1,13 @@
 package com.infrastructuresickos.surface_safety;
 
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
-import net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
@@ -51,7 +52,7 @@ public class SurfaceSafetyEventHandler {
     @SubscribeEvent
     public void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
         // Only affect natural spawns
-        if (event.getSpawnType() != net.minecraftforge.event.entity.living.MobSpawnEvent.SpawnType.NATURAL) return;
+        if (event.getSpawnType() != MobSpawnType.NATURAL) return;
 
         if (!(event.getEntity() instanceof Zombie) && !(event.getEntity() instanceof Skeleton)) return;
 
