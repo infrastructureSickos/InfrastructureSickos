@@ -19,5 +19,5 @@ InfrastructureSickos is a Minecraft 1.20.1 Forge modpack and server project. The
 - `Design/docs/` — Modpack documentation (overview, mod list, progression tree, dimension design)
 - `Design/docs/custom-mods/` — Specs for custom mods to be built
 - `Design/3rd-party-mods/` — Third-party mod configs and tweaks
-- `Repo/custom-mods/` — Custom Forge mod source code (Gradle multi-project)
-- `Repo/kubejs/` — KubeJS scripts
+- `Repos/InfrastructureSickos/` — Custom Forge mod source code (Gradle multi-project)
+- `Repos/kubejs/` — KubeJS scripts
