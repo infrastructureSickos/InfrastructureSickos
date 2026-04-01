@@ -1,6 +1,9 @@
 package com.infrastructuresickos.torch_burnout;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,6 +13,8 @@ public class TorchBurnout {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public TorchBurnout() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, TBConfig.SPEC);
+        MinecraftForge.EVENT_BUS.register(new TorchBurnoutEventHandler());
         LOGGER.info("TorchBurnout initialized");
     }
 }
