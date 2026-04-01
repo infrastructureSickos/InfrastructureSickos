@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "fertile_biomes:wild_crops",
+  "step": "vegetal_decoration"
+}

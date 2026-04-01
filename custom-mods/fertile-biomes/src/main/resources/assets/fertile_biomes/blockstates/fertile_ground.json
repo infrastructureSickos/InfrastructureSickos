@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "moisture=0": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=1": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=2": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=3": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=4": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=5": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=6": { "model": "fertile_biomes:block/fertile_ground_dry" },
+    "moisture=7": { "model": "fertile_biomes:block/fertile_ground_moist" }
+  }
+}
