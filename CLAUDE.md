@@ -11,11 +11,13 @@ InfrastructureSickos is a Minecraft 1.20.1 Forge modpack and server project. The
 - **Minecraft**: 1.20.1, Forge
 - **All 3rd-party mods must be on Modrinth**
 - **Tech progression**: Create → Immersive Engineering → Botania
-- **Custom mods will be needed** — specs live in `docs/custom-mods/`
+- **Custom mods will be needed** — specs live in `Design/docs/custom-mods/`
 - **Recipe tweaking tool**: KubeJS
 
 ## Repository Structure
 
-- `docs/` — Modpack documentation (overview, mod list, progression tree, dimension design)
-- `docs/custom-mods/` — Specs for custom mods to be built
-- `3rd-party-mods/` — Third-party mod configs and tweaks
+- `Design/docs/` — Modpack documentation (overview, mod list, progression tree, dimension design)
+- `Design/docs/custom-mods/` — Specs for custom mods to be built
+- `Design/3rd-party-mods/` — Third-party mod configs and tweaks
+- `Repo/custom-mods/` — Custom Forge mod source code (Gradle multi-project)
+- `Repo/kubejs/` — KubeJS scripts
