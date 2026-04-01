@@ -84,7 +84,7 @@ public class SurfaceSafetyEventHandler {
      * iron sword (zombie) / bow (skeleton) for iron tier.
      */
     private void applyGear(MobSpawnEvent.FinalizeSpawn event, double chance, boolean leather) {
-        net.minecraft.world.entity.Mob mob = event.getEntity();
+        Mob mob = event.getEntity();
 
         // Armor slots
         ItemStack[] armorItems = leather
