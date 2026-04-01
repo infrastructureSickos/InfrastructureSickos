@@ -54,7 +54,7 @@ public class MagmaCobbleEventHandler {
 
         Player player = event.getPlayer();
         boolean hasSilkTouch = player != null
-                && EnchantmentHelper.getTagEnchantmentLevel(
+                && EnchantmentHelper.getItemEnchantmentLevel(
                         Enchantments.SILK_TOUCH, player.getMainHandItem()) > 0;
 
         if (hasSilkTouch) return; // drop the block item normally

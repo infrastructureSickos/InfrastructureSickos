@@ -62,9 +62,8 @@ public class StealthEventHandler {
         // --- Light factor ---
         // Light level at the player's feet position.
         // lightFactor: range [MIN_LIGHT_FACTOR, 1.0]
-        int lightLevel  = mob.level().getLightEmission(BlockPos.containing(player.position()));
-        // getLightEmission returns 0 for most blocks; use getRawBrightness for ambient light
-        lightLevel = mob.level().getRawBrightness(BlockPos.containing(player.position()), 0);
+        // getRawBrightness(pos, 0) returns the combined sky+block light level at the position
+        int lightLevel = mob.level().getRawBrightness(BlockPos.containing(player.position()), 0);
         double lightFactor = MIN_LIGHT_FACTOR + (1.0 - MIN_LIGHT_FACTOR) * (lightLevel / 15.0);
 
         // --- Sneak factor ---
