@@ -1,0 +1,4 @@
+ext {
+    modId = 'magma_cobble'
+    modName = 'MagmaCobble'
+}

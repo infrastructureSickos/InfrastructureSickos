@@ -1,0 +1,4 @@
+ext {
+    modId = 'surface_safety'
+    modName = 'SurfaceSafety'
+}

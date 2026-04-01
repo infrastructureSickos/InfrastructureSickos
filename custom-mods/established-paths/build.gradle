@@ -1,0 +1,4 @@
+ext {
+    modId = 'established_paths'
+    modName = 'EstablishedPaths'
+}

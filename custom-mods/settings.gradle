@@ -1,0 +1,21 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net/' }
+    }
+}
+
+rootProject.name = 'modestcraft-custom-mods'
+
+include 'dangerous-fire'
+include 'dangerous-sand'
+include 'dangerous-stone'
+include 'established-paths'
+include 'fertile-biomes'
+include 'water-growth'
+include 'magma-cobble'
+include 'torch-burnout'
+include 'flash-creeper'
+include 'mob-reactions'
+include 'surface-safety'
+include 'stealth'

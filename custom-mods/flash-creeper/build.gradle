@@ -1,0 +1,4 @@
+ext {
+    modId = 'flash_creeper'
+    modName = 'FlashCreeper'
+}

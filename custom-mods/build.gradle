@@ -1,0 +1,112 @@
+// Root build.gradle — applies ForgeGradle configuration to all subprojects
+
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:${forge_gradle_version}"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'net.minecraftforge.gradle'
+
+    java {
+        toolchain.languageVersion = JavaLanguageVersion.of(Integer.parseInt(java_version))
+        withSourcesJar()
+    }
+
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+
+    minecraft {
+        mappings channel: mappings_channel, version: mappings_version
+
+        runs {
+            client {
+                workingDirectory project.file('run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
+                mods {
+                    "${project.ext.modId}" {
+                        source sourceSets.main
+                    }
+                }
+            }
+
+            server {
+                workingDirectory project.file('run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
+                mods {
+                    "${project.ext.modId}" {
+                        source sourceSets.main
+                    }
+                }
+            }
+
+            gameTestServer {
+                workingDirectory project.file('run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
+                property 'forge.enabledGameTestNamespaces', project.ext.modId
+                mods {
+                    "${project.ext.modId}" {
+                        source sourceSets.main
+                    }
+                }
+            }
+
+            data {
+                workingDirectory project.file('run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
+                args '--mod', project.ext.modId, '--all',
+                     '--output', file('src/generated/resources/'),
+                     '--existing', file('src/main/resources/')
+                mods {
+                    "${project.ext.modId}" {
+                        source sourceSets.main
+                    }
+                }
+            }
+        }
+    }
+
+    dependencies {
+        minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    }
+
+    processResources {
+        def replaceProps = [
+            mod_id      : project.ext.modId,
+            mod_name    : project.ext.modName,
+            mod_version : mod_version,
+            mc_version  : mc_version,
+            forge_version: forge_version
+        ]
+        inputs.properties replaceProps
+        filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+            expand replaceProps
+        }
+    }
+
+    jar {
+        manifest {
+            attributes([
+                'Specification-Title'     : project.ext.modId,
+                'Specification-Vendor'    : 'modestcraft',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : mod_version,
+                'Implementation-Vendor'   : 'modestcraft',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            ])
+        }
+    }
+}
