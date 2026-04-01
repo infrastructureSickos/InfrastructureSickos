@@ -1,0 +1,3 @@
+[submodule "Organizations/infrastructureSickos/server"]
+	path = Organizations/infrastructureSickos/server
+	url = https://github.com/infrastructureSickos/server.git
