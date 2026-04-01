@@ -20,5 +20,5 @@ InfrastructureSickos is a Minecraft 1.20.1 Forge modpack and server project. The
 - `Design/docs/custom-mods/` — Specs for custom mods to be built
 - `Design/3rd-party-mods/` — Third-party mod configs and tweaks
 - `Repos/infrastructureSickos/` — GitHub org folder; each subfolder is a cloned repo
-  - `Repos/infrastructureSickos/modestcraft/` — Custom Forge mod source code (Gradle multi-project); mirrors [infrastructureSickos/modestcraft](https://github.com/infrastructureSickos/modestcraft)
+  - `Repos/infrastructureSickos/InfrastructureSickos/` — Custom Forge mod source code (Gradle multi-project); mirrors [infrastructureSickos/InfrastructureSickos](https://github.com/infrastructureSickos/InfrastructureSickos)
   - `Repos/infrastructureSickos/server/` — Minecraft server config and KubeJS scripts; mirrors [infrastructureSickos/server](https://github.com/infrastructureSickos/server)
