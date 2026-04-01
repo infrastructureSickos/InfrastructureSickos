@@ -5,7 +5,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'modestcraft-custom-mods'
+rootProject.name = 'infrastructuresickos-custom-mods'
 
 include 'dangerous-fire'
 include 'dangerous-sand'
