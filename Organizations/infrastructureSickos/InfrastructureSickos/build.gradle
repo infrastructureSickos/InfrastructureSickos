@@ -29,87 +29,96 @@ subprojects {
 
     minecraft {
         mappings channel: mappings_channel, version: mappings_version
-
-        runs {
-            client {
-                workingDirectory project.file('run')
-                property 'forge.logging.markers', 'REGISTRIES'
-                property 'forge.logging.console.level', 'debug'
-                mods {
-                    "${project.ext.modId}" {
-                        source sourceSets.main
-                    }
-                }
-            }
-
-            server {
-                workingDirectory project.file('run')
-                property 'forge.logging.markers', 'REGISTRIES'
-                property 'forge.logging.console.level', 'debug'
-                mods {
-                    "${project.ext.modId}" {
-                        source sourceSets.main
-                    }
-                }
-            }
-
-            gameTestServer {
-                workingDirectory project.file('run')
-                property 'forge.logging.markers', 'REGISTRIES'
-                property 'forge.logging.console.level', 'debug'
-                property 'forge.enabledGameTestNamespaces', project.ext.modId
-                mods {
-                    "${project.ext.modId}" {
-                        source sourceSets.main
-                    }
-                }
-            }
-
-            data {
-                workingDirectory project.file('run')
-                property 'forge.logging.markers', 'REGISTRIES'
-                property 'forge.logging.console.level', 'debug'
-                args '--mod', project.ext.modId, '--all',
-                     '--output', file('src/generated/resources/'),
-                     '--existing', file('src/main/resources/')
-                mods {
-                    "${project.ext.modId}" {
-                        source sourceSets.main
-                    }
-                }
-            }
-        }
     }
 
     dependencies {
         minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     }
 
-    processResources {
-        def replaceProps = [
-            mod_id      : project.ext.modId,
-            mod_name    : project.ext.modName,
-            mod_version : mod_version,
-            mc_version  : mc_version,
-            forge_version: forge_version
-        ]
-        inputs.properties replaceProps
-        filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-            expand replaceProps
-        }
-    }
+    // Defer any configuration that reads per-project ext properties (modId, modName)
+    // until after each subproject's own build.gradle has been evaluated.
+    afterEvaluate {
+        def modId   = project.ext.has('modId')   ? project.ext.modId   : project.name
+        def modName = project.ext.has('modName')  ? project.ext.modName : project.name
 
-    jar {
-        manifest {
-            attributes([
-                'Specification-Title'     : project.ext.modId,
-                'Specification-Vendor'    : 'infrastructuresickos',
-                'Specification-Version'   : '1',
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : mod_version,
-                'Implementation-Vendor'   : 'infrastructuresickos',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-            ])
+        minecraft {
+            runs {
+                client {
+                    workingDirectory project.file('run')
+                    property 'forge.logging.markers', 'REGISTRIES'
+                    property 'forge.logging.console.level', 'debug'
+                    mods {
+                        "${modId}" {
+                            source sourceSets.main
+                        }
+                    }
+                }
+
+                server {
+                    workingDirectory project.file('run')
+                    property 'forge.logging.markers', 'REGISTRIES'
+                    property 'forge.logging.console.level', 'debug'
+                    mods {
+                        "${modId}" {
+                            source sourceSets.main
+                        }
+                    }
+                }
+
+                gameTestServer {
+                    workingDirectory project.file('run')
+                    property 'forge.logging.markers', 'REGISTRIES'
+                    property 'forge.logging.console.level', 'debug'
+                    property 'forge.enabledGameTestNamespaces', modId
+                    mods {
+                        "${modId}" {
+                            source sourceSets.main
+                        }
+                    }
+                }
+
+                data {
+                    workingDirectory project.file('run')
+                    property 'forge.logging.markers', 'REGISTRIES'
+                    property 'forge.logging.console.level', 'debug'
+                    args '--mod', modId, '--all',
+                         '--output', file('src/generated/resources/'),
+                         '--existing', file('src/main/resources/')
+                    mods {
+                        "${modId}" {
+                            source sourceSets.main
+                        }
+                    }
+                }
+            }
+        }
+
+        processResources {
+            def replaceProps = [
+                mod_id      : modId,
+                mod_name    : modName,
+                mod_version : mod_version,
+                mc_version  : mc_version,
+                forge_version: forge_version
+            ]
+            inputs.properties replaceProps
+            filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+                expand replaceProps
+            }
+        }
+
+        jar {
+            manifest {
+                attributes([
+                    'Specification-Title'     : modId,
+                    'Specification-Vendor'    : 'infrastructuresickos',
+                    'Specification-Version'   : '1',
+                    'Implementation-Title'    : project.name,
+                    'Implementation-Version'  : mod_version,
+                    'Implementation-Vendor'   : 'infrastructuresickos',
+                    'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                ])
+            }
         }
     }
 }
