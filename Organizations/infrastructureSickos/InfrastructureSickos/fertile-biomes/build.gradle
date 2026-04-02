@@ -1,5 +1,20 @@
+plugins {
+    id 'com.modrinth.minotaur' version '2.+'
+}
+
 ext {
     modId = 'fertile_biomes'
     modName = 'FertileBiomes'
     modrinthId = 'K4QM3BDS'
+}
+
+modrinth {
+    token = System.getenv('MODRINTH_API_TOKEN')
+    projectId = project.ext.modrinthId
+    versionNumber = mod_version
+    versionType = 'release'
+    uploadFile = jar
+    gameVersions = [mc_version]
+    loaders = ['forge']
+    gameCategories = ['worldgen']
 }
