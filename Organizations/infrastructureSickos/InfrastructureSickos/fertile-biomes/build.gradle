@@ -16,5 +16,4 @@ modrinth {
     uploadFile = jar
     gameVersions = [mc_version]
     loaders = ['forge']
-    gameCategories = ['worldgen']
 }
